@@ -1,18 +1,29 @@
 import React from "react";
-import piggy from "../assets/porco.png";
+import { Checkbox, Dropdown, Menu } from "semantic-ui-react";
 
-const Nav = () => {
-	return (
-		<div className="navWrapper">
-			<span className="headerText">HogWild</span>
-			<div className="TwirlyPig">
-				<img src={piggy} className="App-logo" alt="piggy" />
-			</div>
-			<span className="normalText">
-				A React App for County Fair Hog Fans
-			</span>
-		</div>
-	);
-};
+function Nav({ greasedOnly, toggleGreasedOnly, sortOption, handleSort }) {
+  return (
+    <Menu>
+      <Menu.Item>
+        <Checkbox
+          label="Greased only"
+          checked={greasedOnly}
+          onChange={toggleGreasedOnly}
+        />
+      </Menu.Item>
+      <Menu.Item>
+        <Dropdown
+          text={`Sort by ${sortOption}`}
+          options={[
+            { key: "name", text: "Name", value: "name" },
+            { key: "weight", text: "Weight", value: "weight" },
+          ]}
+          value={sortOption}
+          onChange={handleSort}
+        />
+      </Menu.Item>
+    </Menu>
+  );
+}
 
 export default Nav;
